@@ -22,10 +22,10 @@ var firstAndPike = {
     return Math.floor(Math.random() * (max - min + 1)) + min;
   },
 
-  //Handles the calculation of Number of cookies purchased.
+  //Handles the calculation of Number of cookies purchased per hour.
   numOfCookiesPurchased : function(){
 
-    return this.randNumOfCustomers() * this.avgNumOfCookies;
+    return Math.ceil(this.randNumOfCustomers() * this.avgNumOfCookies);
   },
   //loops through number of cookies & stores them into an Array
   addsElToArr : function(){
@@ -49,10 +49,16 @@ var firstAndPike = {
 };
 firstAndPike.combineArrs();
 
-// var pikeSales = document.getElementById('parent');
-// var test = document.createElement('li');
-// test.dataset = firstAndPike.combineArrs();
-// pikeSales.appendChild(test);
+
+//DOM Manipulation to add data to website
+for (var g = 0; g < hoursOfOperationArr.length; g++){
+  var pikeSales = document.getElementById('store-container');
+  var test = document.createElement('li');
+  test.textContent = hoursOfOperationArr[g] + firstAndPike.numOfCookiesPurchasedArr[g];
+  pikeSales.appendChild(test);
+
+}
+
 
 
 //Second store Location
@@ -72,7 +78,7 @@ var seaTacAirport = {
   //Handles the calculation of Number of cookies purchased.
   numOfCookiesPurchased : function(){
 
-    return this.randNumOfCustomers() * this.avgNumOfCookies;
+    return Math.ceil(this.randNumOfCustomers() * this.avgNumOfCookies);
   },
   //loops through number of cookies & stores them into an Array
   addsElToArr : function(){
@@ -96,6 +102,16 @@ var seaTacAirport = {
 };
 seaTacAirport.combineArrs();
 
+//DOM Manipulation to add data to website
+for (var h = 0; h < hoursOfOperationArr.length; h++){
+  var seaTacSales = document.getElementById('store-container2');
+  var testc = document.createElement('li');
+  testc.textContent = hoursOfOperationArr[h] + seaTacAirport.numOfCookiesPurchasedArr[h];
+  seaTacSales.appendChild(testc);
+
+}
+
+
 //Third store Location
 var seattleCenter = {
   minNumOfCustomers: 11,
@@ -113,7 +129,7 @@ var seattleCenter = {
   //Handles the calculation of Number of cookies purchased.
   numOfCookiesPurchased : function(){
 
-    return this.randNumOfCustomers() * this.avgNumOfCookies;
+    return Math.ceil(this.randNumOfCustomers() * this.avgNumOfCookies);
   },
   //loops through number of cookies & stores them into an Array
   addsElToArr : function(){
@@ -138,6 +154,16 @@ var seattleCenter = {
 seattleCenter.combineArrs();
 
 
+//DOM Manipulation to add data to website
+for (var k = 0; k < hoursOfOperationArr.length; k++){
+  var centerSales = document.getElementById('store-container3');
+  var testd = document.createElement('li');
+  testd.textContent = hoursOfOperationArr[k] + seattleCenter.numOfCookiesPurchasedArr[k];
+  centerSales.appendChild(testd);
+
+}
+
+
 //Fourth store Location
 var capitolHill = {
   minNumOfCustomers: 20,
@@ -155,7 +181,7 @@ var capitolHill = {
   //Handles the calculation of Number of cookies purchased.
   numOfCookiesPurchased : function(){
 
-    return this.randNumOfCustomers() * this.avgNumOfCookies;
+    return Math.ceil(this.randNumOfCustomers() * this.avgNumOfCookies);
   },
   //loops through number of cookies & stores them into an Array
   addsElToArr : function(){
@@ -179,6 +205,16 @@ var capitolHill = {
 };
 capitolHill.combineArrs();
 
+
+//DOM Manipulation to add data to website
+for (var l = 0; l < hoursOfOperationArr.length; l++){
+  var capHillSales = document.getElementById('store-container4');
+  var teste = document.createElement('li');
+  teste.textContent = hoursOfOperationArr[l] + capitolHill.numOfCookiesPurchasedArr[l];
+  capHillSales.appendChild(teste);
+
+}
+
 //Fifth store Location
 var alki = {
   minNumOfCustomers: 2,
@@ -196,7 +232,7 @@ var alki = {
   //Handles the calculation of Number of cookies purchased.
   numOfCookiesPurchased : function(){
 
-    return this.randNumOfCustomers() * this.avgNumOfCookies;
+    return Math.ceil(this.randNumOfCustomers() * this.avgNumOfCookies);
   },
   //loops through number of cookies & stores them into an Array
   addsElToArr : function(){
@@ -219,6 +255,16 @@ var alki = {
   }
 };
 alki.combineArrs();
+
+//DOM Manipulation to add data to website
+for (var n = 0; n < hoursOfOperationArr.length; n++){
+  var alkiSales = document.getElementById('store-container5');
+  var testa = document.createElement('li');
+  testa.textContent = hoursOfOperationArr[n] + alki.numOfCookiesPurchasedArr[n];
+  alkiSales.appendChild(testa);
+
+}
+
 
 // console.log('Number of Customers: ' + firstAndPike.randNumOfCustomers());
 // console.log('Number of Cookies purchased: ', firstAndPike.numOfCookiesPurchased());
