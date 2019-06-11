@@ -1,0 +1,14 @@
+header{
+  background-color: aliceblue;
+  height: 100px;
+}
+
+nav{
+  padding-top: 30px;
+}
+
+nav li {
+  float: left; 
+  height: 60px;
+  margin-right: 20px;
+}
