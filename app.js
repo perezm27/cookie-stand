@@ -13,6 +13,7 @@ var hoursOfOperationArr= ['6:00am ', '7:00am ','8:00am ','9:00am ', '10:00am ','
 // Holds all of our Stores' data
 var allStoresArr = [];
 
+
 //Our Constructor
 var StoreLocation = function(name, minNumOfCustomers,maxNumOfCustomers,avgNumOfCookies) {
   this.name = name;
@@ -49,18 +50,36 @@ StoreLocation.prototype.numOfCookiesPurchased = function(){
 //Places our number of cookies purchased per hour into an Array
 StoreLocation.prototype.addsElToArr = function(){
   var total = 0;
-  for (var i = 1; i < hoursOfOperationArr.length; i++ ){
+  for (var i = 0; i < hoursOfOperationArr.length - 1; i++ ){
 
-    this.numOfCookiesPurchasedArr.push(this.numOfCookiesPurchased());
+    var numOfCookies = this.numOfCookiesPurchased();
 
-    total += this.numOfCookiesPurchased();
-
+    this.numOfCookiesPurchasedArr.push(numOfCookies);
+    total += this.numOfCookiesPurchasedArr[i];
   }
   this.total = total;
   console.log(this.total);
   return this.numOfCookiesPurchasedArr;
 
 };
+
+var salmonStore = document.getElementById('new-stores');
+
+//add newstore
+var handleFormSubmit = function(submitEvent){
+  submitEvent.preventDefault();
+
+  var locationName = submitEvent.target.locationName.value;
+  var minCustomer = submitEvent.target.minCustomer.value;
+  var maxCustomer = submitEvent.target.maxCustomer.value;
+  var avgCookies = submitEvent.target.avgCookies.value;
+
+  new StoreLocation (locationName,minCustomer,maxCustomer,avgCookies);
+};
+
+salmonStore.addEventListener('submit', handleFormSubmit);
+
+
 // DOM Manipulation & table row/data creation
 StoreLocation.prototype.addsElToDom = function(){
   var trEl = document.createElement('tr');
