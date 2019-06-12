@@ -1,31 +1,35 @@
 'use strict';
 
-// Create 5 object literals which represent 5 cookie stores & calculate the number of cookies purchased at each location in a seperate array.
+/*
+A simple web application that showcases the application of a constructor & Object-Oriented Programing.
 
-// random number generator source : https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random
+random number generator source : https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random
 
-//Parts of code were completed in collaboration with Jack Kinne, Matt Stuhring, & Jackie
+Collaborative Acknowledgement: Jack Kinne, Matt Stuhring, & Jackie
+*/
 
-var hoursOfOperationArr= ['6AM: ', '7AM: ','8AM: ','9AM: ', '10AM: ','11AM: ','12PM: ', '1PM: ','2PM: ','3PM: ', '4PM: ','5PM: ','6PM: ', '7PM: ','8PM: '];
+var hoursOfOperationArr= ['6:00am ', '7:00am: ','8:00am ','9:00am ', '10:00am ','11:00am ','12:00pm ', '1:00pm ','2:00pm ','3:00pm ', '4:00pm ','5:00pm ','6:00pm ', '7:00pm ','8:00pm ', 'Daily Location Total'];
 
 // Holds all of our Stores' data
 var allStoresArr = [];
 
-//First store Location
+//Our Constructor
 var StoreLocation = function(name, minNumOfCustomers,maxNumOfCustomers,avgNumOfCookies) {
   this.name = name;
   this.minNumOfCustomers = minNumOfCustomers;
   this.maxNumOfCustomers = maxNumOfCustomers;
   this.avgNumOfCookies = avgNumOfCookies;
   this.numOfCookiesPurchasedArr = [];
+  this.totalNumOfCookiesSold =[];
 
-  // Adds new stores into allStorArr
+  // Adds newly created stores into allStorArr
   allStoresArr.push(this);
 
+  //ensures each function operation occurs each time a new object is created
   this.randNumOfCustomers();
   this.numOfCookiesPurchased();
   this.addsElToArr();
-
+  // this.tableHeaderEl();
 };
 
 //Generates Random Number of Customers
@@ -35,18 +39,24 @@ StoreLocation.prototype.randNumOfCustomers = function(){
 
   return Math.floor(Math.random() * (max - min + 1)) + min;
 };
-//Total number of cookies per hour
+
+//Calculates total number of cookies per hour
 StoreLocation.prototype.numOfCookiesPurchased = function(){
 
   return Math.ceil(this.randNumOfCustomers() * this.avgNumOfCookies);
 };
-//loops through number of cookies & stores them into an Array
+
+//Places our number of cookies purchased per hour into an Array
 StoreLocation.prototype.addsElToArr = function(){
-  for (var i = 0; i < hoursOfOperationArr.length; i++ ){
+  var total = 0;
+  for (var i = 1; i < hoursOfOperationArr.length; i++ ){
 
     this.numOfCookiesPurchasedArr.push(this.numOfCookiesPurchased());
+    total += this.numOfCookiesPurchased();
 
   }
+  this.total = total;
+  console.log(this.total);
   return this.numOfCookiesPurchasedArr;
 
 };
@@ -62,13 +72,51 @@ StoreLocation.prototype.addsElToDom = function(){
     tdEl.textContent = this.numOfCookiesPurchasedArr[i];
     trEl.appendChild(tdEl);
   }
+  //creates our totals table elements & writes them into the DOM
+  var totalEl = document.createElement('td');
+  totalEl.textContent = this.total;
+  trEl.appendChild(totalEl);
+
   var storeContainer = document.getElementById('store-container');
   storeContainer.appendChild(trEl);
 
 };
 
+//Table header
+StoreLocation.prototype.tableHeaderEl = function(){
+  var trEl = document.createElement('tr');
+  var thEl = document.createElement('th');
+  // thEl.textContent = hoursOfOperationArr;
+  trEl.appendChild(thEl);
+  for (var i = 0; i < hoursOfOperationArr.length; i++){
+    thEl = document.createElement('th');
+    thEl.textContent = hoursOfOperationArr[i];
+    trEl.appendChild(thEl);
+  }
+  var storeContainer = document.getElementById('store-container');
+  storeContainer.appendChild(trEl);
+};
+
+//table footer
+StoreLocation.prototype.tableFooterEl = function(){
+  var trEl = document.createElement('tr');
+  var tdEl = document.createElement('td');
+  tdEl.textContent = 'Totals ';
+  trEl.appendChild(tdEl);
+  for (var i = 0; i < 16; i++){
+    tdEl = document.createElement('th');
+    // tdEl.textContent = totalCookiesPerHour
+    trEl.appendChild(tdEl);
+  }
+  var storeContainer = document.getElementById('store-container');
+  storeContainer.appendChild(trEl);
+};
+
+
+
 // First Store Location
 var firstAndPike = new StoreLocation ('First & Pike', 23, 65, 6.3);
+firstAndPike.tableHeaderEl();
 firstAndPike.addsElToDom();
 
 //Second Store Location
@@ -86,3 +134,4 @@ capHill.addsElToDom();
 //Fifth Store Location
 var alki = new StoreLocation('Alki', 2, 16, 4.6);
 alki.addsElToDom();
+alki.tableFooterEl();
