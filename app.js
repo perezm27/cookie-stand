@@ -8,7 +8,7 @@ random number generator source : https://developer.mozilla.org/en-US/docs/Web/Ja
 Collaborative Acknowledgement: Jack Kinne, Matt Stuhring, & Jackie
 */
 
-var hoursOfOperationArr= ['6:00am ', '7:00am: ','8:00am ','9:00am ', '10:00am ','11:00am ','12:00pm ', '1:00pm ','2:00pm ','3:00pm ', '4:00pm ','5:00pm ','6:00pm ', '7:00pm ','8:00pm ', 'Daily Location Total'];
+var hoursOfOperationArr= ['6:00am ', '7:00am ','8:00am ','9:00am ', '10:00am ','11:00am ','12:00pm ', '1:00pm ','2:00pm ','3:00pm ', '4:00pm ','5:00pm ','6:00pm ', '7:00pm ','8:00pm ', 'Daily Location Total'];
 
 // Holds all of our Stores' data
 var allStoresArr = [];
@@ -52,6 +52,7 @@ StoreLocation.prototype.addsElToArr = function(){
   for (var i = 1; i < hoursOfOperationArr.length; i++ ){
 
     this.numOfCookiesPurchasedArr.push(this.numOfCookiesPurchased());
+
     total += this.numOfCookiesPurchased();
 
   }
@@ -86,8 +87,8 @@ StoreLocation.prototype.addsElToDom = function(){
 StoreLocation.prototype.tableHeaderEl = function(){
   var trEl = document.createElement('tr');
   var thEl = document.createElement('th');
-  // thEl.textContent = hoursOfOperationArr;
   trEl.appendChild(thEl);
+
   for (var i = 0; i < hoursOfOperationArr.length; i++){
     thEl = document.createElement('th');
     thEl.textContent = hoursOfOperationArr[i];
@@ -105,7 +106,6 @@ StoreLocation.prototype.tableFooterEl = function(){
   trEl.appendChild(tdEl);
   for (var i = 0; i < 16; i++){
     tdEl = document.createElement('th');
-    // tdEl.textContent = totalCookiesPerHour
     trEl.appendChild(tdEl);
   }
   var storeContainer = document.getElementById('store-container');
