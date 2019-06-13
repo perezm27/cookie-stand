@@ -20,7 +20,6 @@ var StoreLocation = function(name, minNumOfCustomers,maxNumOfCustomers,avgNumOfC
   this.maxNumOfCustomers = maxNumOfCustomers;
   this.avgNumOfCookies = avgNumOfCookies;
   this.numOfCookiesPurchasedArr = [];
-  this.totalNumOfCookiesSold =[];
 
   // Adds newly created stores into allStorArr
   allStoresArr.push(this);
@@ -29,6 +28,8 @@ var StoreLocation = function(name, minNumOfCustomers,maxNumOfCustomers,avgNumOfC
   this.randNumOfCustomers();
   this.numOfCookiesPurchased();
   this.addsElToArr();
+  this.addsElToDom();
+
 };
 
 //Generates Random Number of Customers
@@ -44,6 +45,7 @@ StoreLocation.prototype.numOfCookiesPurchased = function(){
 
   return Math.ceil(this.randNumOfCustomers() * this.avgNumOfCookies);
 };
+
 
 //Places our number of cookies purchased per hour into an Array & calculates daily location total
 StoreLocation.prototype.addsElToArr = function(){
@@ -76,29 +78,17 @@ var handleFormSubmit = function(submitEvent){
 
   new StoreLocation (locationName,minCustomer,maxCustomer,avgCookies);
 
+  document.getElementById('store-container').innerHTML = '';
+  document.getElementById('new-stores').reset();
+
+  // returns item to table after clearing it
+  tableHeaderEl();
+  for (var i = 0; i < allStoresArr.length; i++){
+    allStoresArr[i].addsElToDom();
+  }
+  tableFooterEl();
 };
-
 salmonStore.addEventListener('submit', handleFormSubmit);
-
-
-// //Adds newly created stores to table
-// StoreLocation.prototype.addStoreForm = function (){
-//   var trEl = document.createElement('tr');
-//   var tdEl = document.createElement('td');
-//   tdEl.textContent = this.name;
-//   trEl.appendChild(tdEl);
-
-//   for (var i = 0; i < allStoresArr.length; i++ ){
-//     trEl = document.createElement('tr');
-//     tdEl = document.createElement('td');
-//     tdEl.textContent = target.locationName.value;
-//     trEl.appendChild(tdEl);
-
-//   }
-//   var storeContainer = document.getElementById('store-container');
-//   storeContainer.appendChild(trEl);
-
-// };
 
 
 // DOM Manipulation & table row/data creation
@@ -113,6 +103,7 @@ StoreLocation.prototype.addsElToDom = function(){
     tdEl.textContent = this.numOfCookiesPurchasedArr[i];
     trEl.appendChild(tdEl);
   }
+
   //creates our totals table elements & writes them into the DOM
   var totalEl = document.createElement('td');
   totalEl.textContent = this.total;
@@ -124,7 +115,7 @@ StoreLocation.prototype.addsElToDom = function(){
 };
 
 //Table header
-StoreLocation.prototype.tableHeaderEl = function(){
+var tableHeaderEl = function(){
   var trEl = document.createElement('tr');
   var thEl = document.createElement('th');
   trEl.appendChild(thEl);
@@ -138,40 +129,43 @@ StoreLocation.prototype.tableHeaderEl = function(){
   storeContainer.appendChild(trEl);
 };
 
-//table footer
-StoreLocation.prototype.tableFooterEl = function(){
+//table footer & caculates column totals
+var tableFooterEl = function(){
   var trEl = document.createElement('tr');
   var tdEl = document.createElement('td');
   tdEl.textContent = 'Totals ';
   trEl.appendChild(tdEl);
-  for (var i = 0; i < 16; i++){
+
+  for (var i = 0; i < 15; i++){
     tdEl = document.createElement('th');
+    var totals = 0;
+    for (var g = 0; g < allStoresArr.length; g++){
+      totals += allStoresArr[g].numOfCookiesPurchasedArr[i];
+    }
+    tdEl.textContent = totals;
+
     trEl.appendChild(tdEl);
   }
   var storeContainer = document.getElementById('store-container');
   storeContainer.appendChild(trEl);
 };
 
-
+//creates our table header
+tableHeaderEl();
 
 // First Store Location
-var firstAndPike = new StoreLocation ('First & Pike', 23, 65, 6.3);
-firstAndPike.tableHeaderEl();
-firstAndPike.addsElToDom();
+new StoreLocation ('First & Pike', 23, 65, 6.3);
 
 //Second Store Location
-var seaTac = new StoreLocation ('SeaTac Airport', 3, 24, 1.2);
-seaTac.addsElToDom();
+new StoreLocation ('SeaTac Airport', 3, 24, 1.2);
 
 //Third store location
-var seaCenter = new StoreLocation ('Seattle Center', 11, 38, 3.7);
-seaCenter.addsElToDom();
+new StoreLocation ('Seattle Center', 11, 38, 3.7);
 
 //Fourth Store Location
-var capHill = new StoreLocation('Capitol Hill', 20, 38, 2.3);
-capHill.addsElToDom();
+new StoreLocation('Capitol Hill', 20, 38, 2.3);
 
 //Fifth Store Location
-var alki = new StoreLocation('Alki', 2, 16, 4.6);
-alki.addsElToDom();
-alki.tableFooterEl();
+new StoreLocation('Alki', 2, 16, 4.6);
+
+tableFooterEl();
