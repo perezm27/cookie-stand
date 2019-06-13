@@ -13,7 +13,6 @@ var hoursOfOperationArr= ['6:00am ', '7:00am ','8:00am ','9:00am ', '10:00am ','
 // Holds all of our Stores' data
 var allStoresArr = [];
 
-
 //Our Constructor
 var StoreLocation = function(name, minNumOfCustomers,maxNumOfCustomers,avgNumOfCookies) {
   this.name = name;
@@ -30,7 +29,6 @@ var StoreLocation = function(name, minNumOfCustomers,maxNumOfCustomers,avgNumOfC
   this.randNumOfCustomers();
   this.numOfCookiesPurchased();
   this.addsElToArr();
-  // this.tableHeaderEl();
 };
 
 //Generates Random Number of Customers
@@ -47,7 +45,7 @@ StoreLocation.prototype.numOfCookiesPurchased = function(){
   return Math.ceil(this.randNumOfCustomers() * this.avgNumOfCookies);
 };
 
-//Places our number of cookies purchased per hour into an Array
+//Places our number of cookies purchased per hour into an Array & calculates daily location total
 StoreLocation.prototype.addsElToArr = function(){
   var total = 0;
   for (var i = 0; i < hoursOfOperationArr.length - 1; i++ ){
@@ -58,15 +56,17 @@ StoreLocation.prototype.addsElToArr = function(){
     total += this.numOfCookiesPurchasedArr[i];
   }
   this.total = total;
-  console.log(this.total);
   return this.numOfCookiesPurchasedArr;
 
 };
 
+
+//Gets access to form via id
 var salmonStore = document.getElementById('new-stores');
 
-//add newstore
+//Handles accepting user input & stores it into allStoresArr
 var handleFormSubmit = function(submitEvent){
+  // prevents default POST/GET request method of form
   submitEvent.preventDefault();
 
   var locationName = submitEvent.target.locationName.value;
@@ -75,9 +75,30 @@ var handleFormSubmit = function(submitEvent){
   var avgCookies = submitEvent.target.avgCookies.value;
 
   new StoreLocation (locationName,minCustomer,maxCustomer,avgCookies);
+
 };
 
 salmonStore.addEventListener('submit', handleFormSubmit);
+
+
+// //Adds newly created stores to table
+// StoreLocation.prototype.addStoreForm = function (){
+//   var trEl = document.createElement('tr');
+//   var tdEl = document.createElement('td');
+//   tdEl.textContent = this.name;
+//   trEl.appendChild(tdEl);
+
+//   for (var i = 0; i < allStoresArr.length; i++ ){
+//     trEl = document.createElement('tr');
+//     tdEl = document.createElement('td');
+//     tdEl.textContent = target.locationName.value;
+//     trEl.appendChild(tdEl);
+
+//   }
+//   var storeContainer = document.getElementById('store-container');
+//   storeContainer.appendChild(trEl);
+
+// };
 
 
 // DOM Manipulation & table row/data creation
