@@ -1,43 +1,56 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Cookie Stand</title>
+    <title>Pat's Cookies</title>
 
-    <link rel="stylesheet" href="./style.css" type="text/css">
+    <link rel="stylesheet" href="./merchandise.css" type="text/css">
   </head>
+  <div id="wrapper">
 
-  <body>
-    <header>
-      <nav>
-        <ul>
-          <li> <a href="index.html">Home</a></li>
-          <li><a href="sales.html">Sales</a></li>
-        </ul>
-      </nav>
-    </header>
-    <main>
-      <table id="store-container"></table>
-
-      <form id="new-stores">
-        <legend>Add New Store</legend>
-        <fieldset id="clear">
-        <label for="locationName">Location Name</label>
-        <input name="locationName">
-
-        <label for="minCustomer">min number of customer</label>
-        <input name="minCustomer">
-
-        <label for="maxCustomer">max number of customer</label>
-        <input name="maxCustomer">
-
-        <label for="avgCookies">avg number of cookies</label>
-        <input name="avgCookies">
-      </fieldset>
-        <button id="submit">Submit</button>
-
-
-      </form>
-    </main>
-    <script src="./app.js"></script>
-  </body>
+    <body>
+      <header>
+        <nav>
+          <ul>
+            <li><a href="index.html">Welcome Page</a></li>
+            <li> <a href="merchandise.html">Merchandise</a></li>
+            <li><a href="sales.html">Sales</a></li>
+          </ul>
+        </nav>
+      </header>
+      <main>
+        <table id="store-container"></table>
+        
+        <form id="new-stores">
+          <legend>Add New Store</legend>
+          <fieldset id="clear">
+            <label for="locationName">Location Name</label>
+            <input name="locationName">
+            
+            <label for="minCustomer">min number of customer</label>
+            <input name="minCustomer">
+            
+            <label for="maxCustomer">max number of customer</label>
+            <input name="maxCustomer">
+            
+            <label for="avgCookies">avg number of cookies</label>
+            <input name="avgCookies">
+          </fieldset>
+          <button id="submit">Submit</button>
+        </form>
+        <div>
+          <section>
+            <h3>Contact us!</h3>
+            <p>We are open daily check out our hours below!</p>
+            <p>Monday-Friday 6AM -8PM</p>
+            <p>46329 Salmon Way Rd. Seattle, WA 98001</p>
+            
+          </section>
+        </div>
+        
+        
+        
+      </main>
+      <script src="./app.js"></script>
+    </div>
+    </body>
 </html>
