@@ -3,7 +3,9 @@
 /*
 A simple web application that showcases the application of a constructor & Object-Oriented Programing.
 
-random number generator source : https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random
+Random number generator source : https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random
+
+Prototype source : https://www.w3schools.com/js/js_object_prototypes.asp
 
 Collaborative Acknowledgement: Jack Kinne, Matt Stuhring, & Jackie
 */
@@ -62,7 +64,6 @@ StoreLocation.prototype.addsElToArr = function(){
 
 };
 
-
 //Gets access to form via id
 var salmonStore = document.getElementById('new-stores');
 
@@ -76,12 +77,16 @@ var handleFormSubmit = function(submitEvent){
   var maxCustomer = submitEvent.target.maxCustomer.value;
   var avgCookies = submitEvent.target.avgCookies.value;
 
+  // instantiates new store object created via form
   new StoreLocation (locationName,minCustomer,maxCustomer,avgCookies);
 
+  //clears table
   document.getElementById('store-container').innerHTML = '';
+
+  //clears user input on form
   document.getElementById('new-stores').reset();
 
-  // returns item to table after clearing it
+  // returns items to table after clearing it
   tableHeaderEl();
   for (var i = 0; i < allStoresArr.length; i++){
     allStoresArr[i].addsElToDom();

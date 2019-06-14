@@ -1,5 +1,5 @@
 header{
-  background-color: rgb(180, 4, 250);
+  background-color: black;
   height: 100px;
 }
 
@@ -25,9 +25,9 @@ img {
 }
 
 #welcome {
-  color: salmon;
+  color: white;
   text-align: center;
 }
-/* body{
-  background-color: black;
-} */
+body{
+  background-color: pink;
+}

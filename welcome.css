@@ -1,0 +1,46 @@
+nav{
+  position: relative;
+  background-color: black;
+}
+
+ul li {
+  list-style-type: none;
+  font-family: cursive;
+  color: white;
+  font-size: 2.5em;
+
+}
+
+body{
+  background-color: pink;
+
+}
+
+h2{
+  text-align: center;
+}
+
+img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+  margin-top: 10%;
+}
+
+img:hover{
+  -webkit-transform: scaleX(-1);
+  transform: scaleX(-1);
+}
+
+#text{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 20px;
+  color: white;
+  font-size: 30px;
+  font-family: cursive;
+
+}
