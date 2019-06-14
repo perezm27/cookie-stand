@@ -1,0 +1,47 @@
+header{
+  background-color: black;
+  height: 100px;
+}
+
+nav{
+  padding-top: 30px;
+}
+
+nav li {
+  list-style: none;
+  float: left; 
+  height: 60px;
+  margin-right: 20px;
+}
+
+a{
+  color: white;
+}
+
+#wrapper {
+  margin-left:auto;
+  margin-right:auto;
+  width:960px;
+}
+
+table, td, th {
+  border: solid black 1px;
+}
+
+img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#welcome {
+  color: white;
+  text-align: center;
+}
+body{
+  background-color: pink;
+}
+
+#images{
+  display: inline-block;
+}
