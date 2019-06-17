@@ -32,6 +32,9 @@ img {
   display: block;
   margin-left: auto;
   margin-right: auto;
+  border-radius: 8px;
+  height: 300px;
+  width: 300px;
 }
 
 #welcome {
@@ -42,6 +45,7 @@ body{
   background-color: pink;
 }
 
-#images{
+#images li{
   display: inline-block;
+  list-style-type: none;
 }
