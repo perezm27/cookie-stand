@@ -49,3 +49,15 @@ body{
   display: inline-block;
   list-style-type: none;
 }
+
+footer{
+  text-align: center;
+  width: 100%;
+  color: white;
+  background-color: black;
+}
+
+#footer{
+margin-top: 200px;
+margin-bottom: auto;
+}
